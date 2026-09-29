@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+/* ===== CUSTOM THEME ===== */
+@theme {
+  --color-agri-50: #f0fdf4;
+  --color-agri-100: #dcfce7;
+  --color-agri-200: #bbf7d0;
+  --color-agri-300: #86efac;
+  --color-agri-400: #4ade80;
+  --color-agri-500: #22c55e;
+  --color-agri-600: #16a34a;
+  --color-agri-700: #15803d;
+  --color-agri-800: #166534;
+  --color-agri-900: #14532d;
+  --color-agri-950: #052e16;
+
+  --color-surface-50: #f8fafc;
+  --color-surface-100: #f1f5f9;
+  --color-surface-200: #e2e8f0;
+  --color-surface-300: #cbd5e1;
+  --color-surface-400: #94a3b8;
+  --color-surface-500: #64748b;
+  --color-surface-600: #475569;
+  --color-surface-700: #334155;
+  --color-surface-800: #1e293b;
+  --color-surface-900: #0f172a;
+  --color-surface-950: #020617;
+}
+
+/* ===== BASE STYLES ===== */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Dark mode base */
+  .dark body,
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+/* ===== GLASS MORPHISM ===== */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #4ade80 0%, #22d3ee 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-warm {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.3), rgba(34, 211, 238, 0.3));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(74, 222, 128, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(74, 222, 128, 0.3); }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* ===== HERO PARTICLES ===== */
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ===== CHAT STYLES ===== */
+.chat-container {
+  scrollbar-width: thin;
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* ===== DROP ZONE ===== */
+.drop-zone-active {
+  border-color: #4ade80 !important;
+  background: rgba(74, 222, 128, 0.08) !important;
+}
+
+/* ===== MARKDOWN CONTENT ===== */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content p {
+  margin-bottom: 0.75em;
+  line-height: 1.7;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25em;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content code {
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.dark .markdown-content code {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.markdown-content code {
+  background: rgba(0, 0, 0, 0.06);
+}
